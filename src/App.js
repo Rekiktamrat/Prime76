@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'; 
 import React, { useEffect } from 'react';
 import AdminLayout from './components/AdminLayout';
 import Dashboard from './pages/Dashboard';
@@ -24,11 +24,24 @@ const App = () => {
       document.body.classList.add("dark");
     }
   }, []);
+
+  // Function to check if user is logged in
+  const isAuthenticated = () => {
+    return localStorage.getItem("admin") !== null; // Adjust based on your authentication logic
+  };
+
   return (
     <Router>
       <Routes>
-        {/* Admin Routes */}
-        <Route path="/admin" element={<AdminLayout />}>
+        {/* Redirect "/" to Login */}
+        <Route path="/" element={<Navigate to="/login" />} />
+        
+        {/* Auth Routes */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+
+        {/* Protected Admin Routes */}
+        <Route path="/admin" element={isAuthenticated() ? <AdminLayout /> : <Navigate to="/login" />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="settings" element={<Settings />} />
           <Route path="region" element={<Region />} />
@@ -43,13 +56,11 @@ const App = () => {
           <Route path="profile" element={<Profile />} />
         </Route>
 
-        {/* Other Routes */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/" element={<Navigation />} />
+        {/* Catch-All Route (Optional) */}
+        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </Router>
   );
-}
+};
 
 export default App;
