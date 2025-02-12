@@ -21,7 +21,8 @@ const Login = () => {
       adminLogin({
         email,
         password,
-      }).then(navigate("/admin/user-management"))
+      })
+      // .then(navigate("/admin/user-management"))
     );
   };
 

@@ -34,7 +34,6 @@ const App = () => {
     <Router>
       <Routes>
         {/* Redirect "/" to Login */}
-        <Route path="/" element={<Navigate to="/login" />} />
         
         {/* Auth Routes */}
         <Route path="/login" element={<Login />} />
@@ -49,14 +48,14 @@ const App = () => {
           <Route path="location" element={<Location />} />
           <Route path="property-management" element={<PropertyManagement />} />
           <Route path="property-type" element={<PropertyType />} />
-          <Route path="user-management" element={<UserManagement />} />
           <Route path="rental"element={<RentalTransactions />} />
           <Route path="sale"element={<SaleTransactions />} />
+          <Route path="user-management" element={<UserManagement />} />
           <Route path="manager-management" element={<ManagerManagement />} />
           <Route path="profile" element={<Profile />} />
         </Route>
 
-        {/* Catch-All Route (Optional) */}
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </Router>

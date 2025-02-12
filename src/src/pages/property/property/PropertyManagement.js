@@ -62,7 +62,7 @@ const PropertyManagement = () => {
   // });
 
   return (
-    <div className="p-10 bg-gray-100 min-h-screen">
+    <div className="p-30 bg-gray-100 min-h-screen">
       <h1 className="text-2xl font-bold mb-6">Property Management</h1>
 
       <div className="flex mb-4 space-x-4">
